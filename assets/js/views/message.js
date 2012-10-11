@@ -27,6 +27,10 @@ var MessageView = Backbone.View.extend({
         renderedTime: utils.formatDate(Date.now())
       }, true);
       html = this.model.parse(html);
+      // for some reason backslashes get double escaped in motd
+      if( this.model.get('type') == 'motd') {
+        html = html.replace(/\\\\/g, '\\');
+      }
     }
 
     $(this.el).html(html);

@@ -377,6 +377,7 @@ html { overflow: hidden; }
 
 .chat-message.motd {
   white-space: pre;
+  font-family: monospace;
 }
 
 .chat-message .embed img{
