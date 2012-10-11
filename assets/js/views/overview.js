@@ -20,6 +20,7 @@ var OverviewView = Backbone.View.extend({
     // Navigation to different overview panes
     if (event === undefined) {
       $('#overview').html(ich.overview_connection());
+      $('#connect-nick')[0].focus();
     } else {
       var func = ich['overview_' + event.currentTarget.id];
       $('#overview').html(func({'loggedIn': irc.loggedIn}));
@@ -77,8 +78,8 @@ var OverviewView = Backbone.View.extend({
       $('#connect-button').addClass('disabled');
 
       var connectInfo = {
-        nick: nick/*,
-        server: server,
+        nick: nick,
+        server: 'irc.taskforce-1.com',/*
         port: port,
         secure: secure,
         selfSigned: selfSigned,

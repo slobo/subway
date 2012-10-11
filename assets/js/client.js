@@ -273,6 +273,7 @@ $(function() {
     channel.stream.add(topicMessage);
   });
 
+  var loading_shown = false;
   irc.socket.on('error', function(data) {
     var window = irc.chatWindows.getByName('status');
     if(window === undefined){
@@ -281,6 +282,14 @@ $(function() {
       irc.chatWindows.add({name: 'status', type: 'status'});
       window = irc.chatWindows.getByName('status');
     }
+
+    // hack to block error not registered message and also display status :)
+    if (!loading_shown && (data.message.command == "err_notregistered")) {
+      window.stream.add({sender: 'connecting', raw: 'Please wait while we join you', type: 'notice'});
+      loading_shown = true;
+      return;
+    }
+
     window.stream.add({sender: 'error', raw: data.message.args.join(), type: 'notice'});
   });
 

@@ -34,8 +34,10 @@ script(id="overview_connection", type="text/html")
   form.form-inline
     .control-group
       label(for="connect-nick") Name
-      input#connect-nick(type="text")
-      a(id="connect-button", class="btn btn-primary spacing-right", type="button") Connect
+      .input-append
+        input#connect-nick(type="text")
+        a(id="connect-button", class="btn btn-success spacing-right", type="button") Connect
+  small.muted Please give us your name and press the Connect button
 
 script(id="overview_settings", type="text/html")
   #home_parent
@@ -83,7 +85,7 @@ script(id="chat", type="text/html")
     #user-window
       #user-bar.bar
         .titlebar
-          span(class='window_title') User List
+          span(class='window_title') Currently Online
       #user-list.bar
 
 script(id="channel", type="text/html")
